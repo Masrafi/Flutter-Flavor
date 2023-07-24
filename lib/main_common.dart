@@ -8,11 +8,13 @@ var flavorConfigProvider;
 void mainCommon(FlavorConfig config) {
   flavorConfigProvider = StateProvider((ref) => config);
   runApp(
-    ProviderScope(child: MyApp()),
+    const ProviderScope(child: MyApp()),
   );
 }
 
 class MyApp extends ConsumerWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, ref) {
@@ -21,13 +23,15 @@ class MyApp extends ConsumerWidget {
     return MaterialApp(
       title: config.appTitle,
       theme: config.theme,
-      home: MyHomePage(),
+      home: const MyHomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class MyHomePage extends ConsumerWidget {
+  const MyHomePage({super.key});
+
   @override
   Widget build(BuildContext context, ref) {
     print(ref.read(flavorConfigProvider.notifier).state.appTitle);
